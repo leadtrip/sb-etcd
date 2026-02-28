@@ -2,17 +2,20 @@ package wood.mike.sbetcd.service;
 
 import io.etcd.jetcd.ByteSequence;
 import io.etcd.jetcd.Client;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import wood.mike.sbetcd.model.PutRequest;
 
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 @Service
 public class EtcdService {
     private final Client client;
 
     public EtcdService(@Value("${ETCD_ENDPOINTS:http://localhost:2379}") String endpoint) {
+        log.info("Etcd service initializing endpoint: {}", endpoint);
         this.client = Client.builder()
                 .endpoints(endpoint)
                 .build();
