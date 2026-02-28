@@ -1,1 +1,4 @@
-spring.application.name=sb-etcd
+server:
+  port: 9220
+spring:
+  application.name: sb-etcd
