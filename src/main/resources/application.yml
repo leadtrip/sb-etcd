@@ -1,4 +1,9 @@
 server:
   port: 9220
 spring:
-  application.name: sb-etcd
+  application:
+   :name: sb-etcd
+
+app:
+  etcd:
+    timeout: 5
