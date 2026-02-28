@@ -2,8 +2,9 @@ server:
   port: 9220
 spring:
   application:
-   :name: sb-etcd
+   name: sb-etcd
 
 app:
   etcd:
+    endpoints: ${ETCD_ENDPOINTS:http://localhost:2379}
     timeout: 5

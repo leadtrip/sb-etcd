@@ -18,15 +18,18 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 @Service
 public class EtcdService {
 
-    @Value("${app.etcd.timeout}")
-    private Long timeout;
+    private final Long timeout;
 
     private final Client client;
 
-    public EtcdService(@Value("${ETCD_ENDPOINTS:http://localhost:2379}") String endpoint) {
-        log.info("Etcd service initializing endpoint: {}", endpoint);
+    public EtcdService(
+            @Value("${app.etcd.endpoints}") String endpoints,
+            @Value("${app.etcd.timeout:5}") Long timeout
+    ) {
+        log.info("Etcd service initializing client, endpoints: {}, timeout: {}", endpoints, timeout);
+        this.timeout = timeout;
         this.client = Client.builder()
-                .endpoints(endpoint)
+                .endpoints(endpoints)
                 .build();
     }
 
